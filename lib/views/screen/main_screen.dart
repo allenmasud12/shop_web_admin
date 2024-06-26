@@ -107,6 +107,32 @@ class _MainScreenState extends State<MainScreen> {
               onSelected: (item){
           screenSelector(item);
               },
+          header: Container(
+            height: 50,
+            width: double.infinity,
+            color: const Color(0xff444444),
+            child: const Center(
+              child: Text(
+                'Store Panel',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          footer: Container(
+            height: 50,
+            width: double.infinity,
+            color: const Color(0xff444444),
+            child: const Center(
+              child: Text(
+                'footer',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
         ),
         body: _selectedItem
 
