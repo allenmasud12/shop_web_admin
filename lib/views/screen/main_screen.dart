@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:shop_admin/constants.dart';
 import 'package:shop_admin/views/screen/bannaer_upload_screen.dart';
 import 'package:shop_admin/views/screen/category_screen.dart';
 import 'package:shop_admin/views/screen/dashboard_screen.dart';
@@ -64,10 +65,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return AdminScaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal.shade900,
-          title: Text("Management"),
+          backgroundColor: primaryColor,
+          title: Text("Management", style: TextStyle(
+            color: Colors.white
+          ),),
         ),
-        sideBar: SideBar(items: [
+        sideBar: SideBar(
+          items: [
             AdminMenuItem(
               title: "Dashboard",
               icon: Icons.dashboard,
