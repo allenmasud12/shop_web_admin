@@ -15,6 +15,33 @@ class _MainScreenState extends State<MainScreen> {
         appBar: AppBar(
           title: Text("Management"),
         ),
+        sideBar: SideBar(items: [
+            AdminMenuItem(
+              title: "test",
+              icon: Icons.add,
+              route: "/",
+            ),
+            AdminMenuItem(
+              title: "test",
+              icon: Icons.add,
+              route: "/",
+            ),
+            AdminMenuItem(
+              title: "test",
+              icon: Icons.add,
+              route: "/",
+            ),
+            AdminMenuItem(
+              title: "test",
+              icon: Icons.add,
+              route: "/",
+            ),
+            AdminMenuItem(
+              title: "test",
+              icon: Icons.add,
+              route: "/",
+            ),
+          ], selectedRoute: '',),
         body: Text("Dashborad")
 
     );
