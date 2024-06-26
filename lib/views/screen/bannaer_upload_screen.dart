@@ -1,9 +1,29 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_admin/constants.dart';
 
-class BannerUploadScreen extends StatelessWidget {
+class BannerUploadScreen extends StatefulWidget {
   static const String routeName = "/BannerUploadScreen";
+
+  @override
+  State<BannerUploadScreen> createState() => _BannerUploadScreenState();
+}
+
+class _BannerUploadScreenState extends State<BannerUploadScreen> {
+  dynamic _image;
+
+  pickImage()async{
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, type: FileType.image);
+
+    if(result!=null){
+      setState(() {
+        _image = result.files.first.bytes;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +55,7 @@ class BannerUploadScreen extends StatelessWidget {
                         border: Border.all(color: Colors.grey.shade800),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Center(
+                      child:Center(
                         child: Text("Banner"),
                       ),
                     ),
@@ -47,7 +67,9 @@ class BannerUploadScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        pickImage();
+                      },
                       child: Text("Upload Banner",style: TextStyle(
                         color: Colors.white
                       ),),
