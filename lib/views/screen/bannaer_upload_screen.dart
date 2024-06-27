@@ -3,6 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shop_admin/constants.dart';
 
 class BannerUploadScreen extends StatefulWidget {
@@ -41,11 +42,18 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
   }
 
   uploadToFirebaseStore()async{
+    EasyLoading.show();
     if(_image!=null){
    String imageUrl = await _uploadBannersToStorge(_image);
    
    await _firestore.collection('banners').doc(fileName).set({
      'image': imageUrl,
+   }).whenComplete((){
+     EasyLoading.dismiss();
+
+     setState(() {
+       _image = null;
+     });
    });
     }
   }
