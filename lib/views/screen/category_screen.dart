@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shop_admin/constants.dart';
+import 'package:shop_admin/widget/category_widget.dart';
 
 class CategoryScreen extends StatefulWidget {
   static const String routeName = "/CategoryScreen";
@@ -56,6 +57,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       EasyLoading.dismiss();
       setState(() {
         _image = null;
+        _formkey.currentState!.reset();
       });
     });
     }else{
@@ -177,6 +179,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 )
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Divider(color: Colors.grey,),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Categories",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 36,
+                ),
+              ),
+            ),
+            CategoryWidget()
           ],
         ),
       ),
