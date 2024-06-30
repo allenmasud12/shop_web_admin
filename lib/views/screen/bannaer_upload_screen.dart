@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shop_admin/constants.dart';
 
+import '../../widget/banner_widget.dart';
+
 class BannerUploadScreen extends StatefulWidget {
   static const String routeName = "/BannerUploadScreen";
 
@@ -127,6 +129,12 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
               )
             ],
           ),
+          Divider(color: Colors.grey,),
+          Text("Banner", style: TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+          ),),
+          BannerWidget(),
         ],
       ),
     );
