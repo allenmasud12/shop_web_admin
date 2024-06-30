@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shop_admin/constants.dart';
+import 'package:shop_admin/widget/heading_text.dart';
 
 import '../../widget/banner_widget.dart';
 
@@ -22,10 +23,11 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
 
   String? fileName;
 
-  pickImage()async{
-    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false, type: FileType.image);
+  pickImage() async {
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(allowMultiple: false, type: FileType.image);
 
-    if(result!=null){
+    if (result != null) {
       setState(() {
         _image = result.files.first.bytes;
         fileName = result.files.first.name;
@@ -33,30 +35,30 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
     }
   }
 
-  _uploadBannersToStorge(dynamic image)async{
-   Reference ref = _storage.ref().child("banners").child(fileName!);
-   UploadTask uploadTask = ref.putData(image);
+  _uploadBannersToStorge(dynamic image) async {
+    Reference ref = _storage.ref().child("banners").child(fileName!);
+    UploadTask uploadTask = ref.putData(image);
 
-  TaskSnapshot snapshot = await uploadTask;
- String downloadUrl = await snapshot.ref.getDownloadURL();
+    TaskSnapshot snapshot = await uploadTask;
+    String downloadUrl = await snapshot.ref.getDownloadURL();
 
- return downloadUrl;
+    return downloadUrl;
   }
 
-  uploadToFirebaseStore()async{
+  uploadToFirebaseStore() async {
     EasyLoading.show();
-    if(_image!=null){
-   String imageUrl = await _uploadBannersToStorge(_image);
-   
-   await _firestore.collection('banners').doc(fileName).set({
-     'image': imageUrl,
-   }).whenComplete((){
-     EasyLoading.dismiss();
+    if (_image != null) {
+      String imageUrl = await _uploadBannersToStorge(_image);
 
-     setState(() {
-       _image = null;
-     });
-   });
+      await _firestore.collection('banners').doc(fileName).set({
+        'image': imageUrl,
+      }).whenComplete(() {
+        EasyLoading.dismiss();
+
+        setState(() {
+          _image = null;
+        });
+      });
     }
   }
 
@@ -68,10 +70,9 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
           Container(
             alignment: Alignment.topLeft,
             padding: EdgeInsets.all(10),
-            child: Text(
-              "Banner",
-              style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
-            ),
+            child: HeadingText(
+              title: "Banner",
+            )
           ),
           Divider(
             color: Colors.grey,
@@ -90,9 +91,14 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
                         border: Border.all(color: Colors.grey.shade800),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: _image!=null? Image.memory(_image, fit: BoxFit.cover,) : Center(
-                        child: Text("Banner"),
-                      ),
+                      child: _image != null
+                          ? Image.memory(
+                              _image,
+                              fit: BoxFit.cover,
+                            )
+                          : Center(
+                              child: Text("Banner"),
+                            ),
                     ),
                     20.height,
                     ElevatedButton(
@@ -105,9 +111,10 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
                       onPressed: () {
                         pickImage();
                       },
-                      child: Text("Upload Banner",style: TextStyle(
-                        color: Colors.white
-                      ),),
+                      child: Text(
+                        "Upload Banner",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     )
                   ],
                 ),
@@ -123,17 +130,19 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
                 onPressed: () {
                   uploadToFirebaseStore();
                 },
-                child: Text("Save", style: TextStyle(
-                  color: Colors.white
-                ),),
+                child: Text(
+                  "Save",
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           ),
-          Divider(color: Colors.grey,),
-          Text("Banner", style: TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-          ),),
+          Divider(
+            color: Colors.grey,
+          ),
+          HeadingText(
+            title: "Banner",
+          ),
           BannerWidget(),
         ],
       ),

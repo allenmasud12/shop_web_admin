@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shop_admin/constants.dart';
 import 'package:shop_admin/widget/category_widget.dart';
+import 'package:shop_admin/widget/heading_text.dart';
 
 class CategoryScreen extends StatefulWidget {
   static const String routeName = "/CategoryScreen";
@@ -75,10 +76,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Container(
               alignment: Alignment.topLeft,
               padding: EdgeInsets.all(10),
-              child: Text(
-                "Categories",
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
-              ),
+              child: HeadingText(
+                title: "Category",
+              )
             ),
             Divider(
               color: Colors.grey,
@@ -185,12 +185,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             Container(
               alignment: Alignment.topLeft,
-              child: Text(
-                "Categories",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36,
-                ),
+              child: HeadingText(
+                title: "Categories",
               ),
             ),
             CategoryWidget()
