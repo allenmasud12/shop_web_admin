@@ -67,12 +67,8 @@ class _BannerUploadScreenState extends State<BannerUploadScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            alignment: Alignment.topLeft,
-            padding: EdgeInsets.all(10),
-            child: HeadingText(
-              title: "Banner",
-            )
+          HeadingText(
+            title: "Banner",
           ),
           Divider(
             color: Colors.grey,

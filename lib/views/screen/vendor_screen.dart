@@ -1,52 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_admin/widget/heading_text.dart';
 
 import '../../constants.dart';
+import '../../widget/rowHeader_widget.dart';
 
 class VendorScreen extends StatelessWidget {
   static const String routeName = "/VendorScreen";
-
-  Widget _rowHeader(String text, int flex){
-    return Expanded(
-        flex: flex,
-        child: Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade700),
-        color:  titleColor
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(text, style: TextStyle(
-          color: Colors.white
-        ),),
-      ),
-    ));
-  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            alignment: Alignment.topLeft,
-            padding: EdgeInsets.all(10),
-            child: Text(
-              "Vendor",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w700
-              ),
-            ),
-          ),
+         HeadingText(title: "Vendor"),
           Row(
             children: [
-              _rowHeader("LOGO", 1),
-              _rowHeader("BUSINESS NAME", 3),
-              _rowHeader("CITY", 2),
-              _rowHeader("STATE", 2),
-              _rowHeader("ACTION", 1),
-              _rowHeader("VIEW MORE", 1),
+              RowheaderWidget(flex: 1, text: 'LOGO',),
+              RowheaderWidget(text:"BUSINESS NAME",flex: 3),
+              RowheaderWidget(text: "CITY",flex: 2),
+              RowheaderWidget(text:"STATE",flex: 2),
+              RowheaderWidget(text:"ACTION",flex: 1),
+              RowheaderWidget(text:"VIEW MORE",flex: 1),
             ],
           )
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:shop_admin/widget/heading_text.dart';
 
 class DashboardScreen extends StatelessWidget {
   static const String routeName = "/DashboardScreen";
@@ -6,19 +7,9 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        child: Container(
-          alignment: Alignment.topLeft,
-          padding: EdgeInsets.all(10),
-          child: Text(
-            "Dashboard",
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.w700
-            ),
-          ),
-        ),
-      ),
+      child: HeadingText(
+        title: "Dashboard",
+      )
     );
   }
 }
